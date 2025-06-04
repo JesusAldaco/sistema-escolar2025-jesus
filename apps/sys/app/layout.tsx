@@ -6,8 +6,9 @@
 
 import { ThemeProvider } from "@/components/theme/theme-provider"
 import type { Metadata } from "next";
-import { Navbar } from "@/components/layout/navbar";
+import { SiteHeader } from "@/components/layout/site-header";
 import "@/styles/globals.css"; 
+import { ClerkProvider } from '@clerk/nextjs'
 
 /**
  * * Metadatos globales de la aplicación.
@@ -63,10 +64,10 @@ type RootLayoutProps = Readonly<{
  * - Mantiene una estructura flex para ocupar el viewport completo
  * 
  * @see {@link ThemeProvider} - Proveedor del sistema de temas
- * @see {@link Navbar} - Barra de navegación principal
  */
 export default function RootLayout({ children }: RootLayoutProps): React.ReactElement {
   return (
+    <ClerkProvider>
     <html lang="en" suppressHydrationWarning>
       <head />
       <body className="min-h-screen bg-background font-sans antialiased">
@@ -76,12 +77,13 @@ export default function RootLayout({ children }: RootLayoutProps): React.ReactEl
           enableSystem
           disableTransitionOnChange
         >
+          <SiteHeader />
           <div className="relative flex min-h-screen flex-col">
-            <Navbar />
             <main className="flex-1">{children}</main>
           </div>
         </ThemeProvider>
       </body>
     </html>
+    </ClerkProvider>
   );
 }

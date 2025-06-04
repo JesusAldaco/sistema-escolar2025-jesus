@@ -19,10 +19,16 @@
  * ## Uso:
  * Este componente se carga automáticamente como ruta principal ('/')
  */
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+
 export default function Home(): React.ReactElement {
   return (
     <div className="flex min-h-[calc(100vh-5rem)] flex-col items-center justify-center">
       <h1>Mi Negocio</h1>
+      <Button className="mt-4">
+        <Link href='/inicio'>Inico</Link>
+      </Button>
     </div>
   );
 }
